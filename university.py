@@ -41,3 +41,4 @@ class Class:
 
     def __str__(self):
         return str(self._spec._name) + "," + str(self._audience._number) + "," + str(self._teacher._name) + "," + str(self._lessonTime._time)
+
