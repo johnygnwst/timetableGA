@@ -3,7 +3,10 @@ from university import *
 from geneticAlgorithm import *
 from evaluation import *
 import prettytable as prettytable
+import time
+from collections import defaultdict
 
+stime = time.perf_counter()
 def print_generation(population):
     schedules = population._schedules
     table_data = prettytable.PrettyTable(['schedule number', 'health rate', 'numb of conflicts'])  #, 'classes [spec,class,audience,teacher,lesson time]'])
@@ -13,6 +16,7 @@ def print_generation(population):
 
 
 def print_schedule_as_table(schedule):
+
     classes = schedule.get_classes()
     table = prettytable.PrettyTable(['Class #', 'Spec', 'Course (number, max num of students)', 'Room (Capacity)', 'Teacher',  'Lesson Time)'])
     for i in range(0, len(classes)):
@@ -22,7 +26,6 @@ def print_schedule_as_table(schedule):
                        classes[i]._teacher._name ,
                        classes[i]._lessonTime._time])
     print(table)
-
 
 data = Data()
 generationNumber = 0
@@ -40,3 +43,4 @@ while (population._schedules[0].get_healthRate() != 1.0):
     print_generation(population)
     print_schedule_as_table(population._schedules[0])
 print("\n\n")
+print("Time:",time.perf_counter() - stime)
